@@ -1,0 +1,29 @@
+version: 1
+runners:
+  Machine:
+    config-id: 2
+images:
+  image:
+    image: node:18
+    registry: https://registry.npmjs.org/
+    auth:
+      username: << env.USER_NAME >>
+      password: << env.USER_PASSWORD >>
+jobs:
+  CatalystDeploy:
+    runner: Machine
+    image: image
+    steps:
+      - npm install -g zcatalyst-cli@latest
+      - node --version
+      - echo `catalyst deploy --project '<< env.PROJECT_ID >>' --org '<<env.CATALYST_ORGID >>' --token '<< env.CATALYST_TOKEN >>'`
+stages:
+  - name: deploymentStage
+    jobs:
+      - CatalystDeploy
+variables:
+  USER_NAME: santhosh270
+  USER_PASSWORD: Catalyst@test123
+  PROJECT_ID: dfasdfasd
+  CATALYST_ORGID: CATALYST_ORGID
+  CATALYST_TOKEN: CATALYST_TOKEN
