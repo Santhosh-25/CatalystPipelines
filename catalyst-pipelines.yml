@@ -14,7 +14,7 @@ jobs:
     runner: Machine
     image: image
     steps:
-      - npm install -g zcatalyst-cli@latest
+      - npm install -g zcatalyst-cli@beta
       - node --version
       - echo `catalyst deploy --project '<< env.PROJECT_ID >>' --org '<<env.CATALYST_ORGID >>' --token '<< env.CATALYST_TOKEN >>'`
 stages:
